@@ -10,6 +10,7 @@ import com.shujuguan.mongo.dao.DataTableDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -46,22 +47,22 @@ public class TestController {
         return null;
     }
 
-    @RequestMapping(value = "/mongo/add", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/mongo/add", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void add1(HttpServletRequest request) {
         dataTableDao.insert(getDataTable(request));
     }
 
-    @RequestMapping(value = "/postgres/json/add", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/postgres/json/add", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void add2(HttpServletRequest request) {
         dataTableMapper.insertJson(getDataTable(request));
     }
 
-    @RequestMapping(value = "/postgres/jsonb/add", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/postgres/jsonb/add", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void add3(HttpServletRequest request) {
         dataTableMapper.insertJsonb(getDataTable(request));
     }
 
-    @RequestMapping(value = "/postgres/mix/add", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    @RequestMapping(value = "/postgres/mix/add", method = RequestMethod.POST, consumes = {MediaType.APPLICATION_JSON_VALUE})
     public void add4(HttpServletRequest request) {
         dataTableMapper.insertJsonAndJsonb(getDataTable(request));
     }
