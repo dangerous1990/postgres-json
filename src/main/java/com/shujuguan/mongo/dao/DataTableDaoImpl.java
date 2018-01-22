@@ -4,7 +4,6 @@ import com.shujuguan.entity.data.DataTable;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.dao.BasicDAO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,6 +19,11 @@ public class DataTableDaoImpl extends BasicDAO<DataTable, String> implements Dat
     @Override
     public void insert(DataTable dataTable) {
         super.save(dataTable);
+    }
+
+    @Override
+    public DataTable getByID(String id) {
+        return this.get(id);
     }
 
 }

@@ -1,13 +1,53 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.shujuguan.mapper.DataTableMapper" >
+<mapper namespace="com.shujuguan.mapper.DataTableMapper">
 
-    <!--<resultMap id="" type="">-->
+    <resultMap id="dataTableResult" type="com.shujuguan.entity.data.DataTable">
+        <id column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="displayType" property="displayType" jdbcType="VARCHAR"/>
+        <result column="sourceType" property="sourceType" jdbcType="VARCHAR"/>
+        <result column="dataSize" property="dataSize" jdbcType="BIGINT"/>
+        <result column="dataConfig" property="dataConfig" jdbcType="OTHER"
+                typeHandler="com.shujuguan.mybatis.type.handler.JsonTypeHandler"/>
+        <result column="chartIds" property="chartIds" jdbcType="OTHER"
+                typeHandler="com.shujuguan.mybatis.type.handler.JsonTypeHandler"/>
+        <result column="suggestChartIds" property="suggestChartIds" jdbcType="OTHER"
+                typeHandler="com.shujuguan.mybatis.type.handler.JsonTypeHandler"/>
+        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="dbTableName" property="dbTableName" jdbcType="VARCHAR"/>
+        <result column="columns" property="columns" jdbcType="OTHER"
+                typeHandler="com.shujuguan.mybatis.type.handler.JsonTypeHandler"/>
+        <result column="revisions" property="revisions" jdbcType="OTHER"
+                typeHandler="com.shujuguan.mybatis.type.handler.JsonTypeHandler"/>
+        <result column="enableAuth" property="enableAuth" jdbcType="BOOLEAN"/>
+        <result column="asyncDataTable" property="asyncDataTable" jdbcType="OTHER"
+                typeHandler="com.shujuguan.mybatis.type.handler.JsonTypeHandler"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="appMetaDataProperties" property="appMetaDataProperties" jdbcType="OTHER"
+                typeHandler="com.shujuguan.mybatis.type.handler.JsonTypeHandler"/>
+        <result column="userId" property="userId" jdbcType="VARCHAR"/>
+        <result column="ownerId" property="ownerId" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="version" property="version" jdbcType="INTEGER"/>
+        <result column="deleted" property="deleted" jdbcType="INTEGER"/>
+        <result column="accesses" property="accesses" jdbcType="OTHER"
+                typeHandler="com.shujuguan.mybatis.type.handler.JsonTypeHandler"/>
+        <result column="groupAccesses" property="groupAccesses" jdbcType="OTHER"
+                typeHandler="com.shujuguan.mybatis.type.handler.JsonTypeHandler"/>
+        <result column="accessList" property="accessList" jdbcType="OTHER"
+                typeHandler="com.shujuguan.mybatis.type.handler.JsonTypeHandler"/>
+        <result column="groupAccessList" property="groupAccessList" jdbcType="OTHER"
+                typeHandler="com.shujuguan.mybatis.type.handler.JsonTypeHandler"/>
+        <result column="tags" property="tags" jdbcType="OTHER"
+                typeHandler="com.shujuguan.mybatis.type.handler.JsonTypeHandler"/>
+        <result column="copyFrom" property="copyFrom" jdbcType="VARCHAR"/>
+        <result column="receiveFrom" property="receiveFrom" jdbcType="VARCHAR"/>
+        <result column="creatorId" property="creatorId" jdbcType="VARCHAR"/>
+        <result column="categoryId" property="categoryId" jdbcType="VARCHAR"/>
 
+    </resultMap>
 
-    <!--</resultMap>-->
-
-    <insert id="insertJson" parameterType="com.shujuguan.entity.data.DataTable" >
+    <insert id="insertJson" parameterType="com.shujuguan.entity.data.DataTable">
         insert into datatable_json (
             displayType,
             sourceType,
@@ -72,7 +112,7 @@
         )
     </insert>
 
-    <insert id="insertJsonb" parameterType="com.shujuguan.entity.data.DataTable" >
+    <insert id="insertJsonb" parameterType="com.shujuguan.entity.data.DataTable">
         insert into datatable_jsonb (
         displayType,
         sourceType,
@@ -137,7 +177,7 @@
         )
     </insert>
 
-    <insert id="insertJsonAndJsonb" parameterType="com.shujuguan.entity.data.DataTable" >
+    <insert id="insertJsonAndJsonb" parameterType="com.shujuguan.entity.data.DataTable">
         insert into datatable_json_jsonb (
         displayType,
         sourceType,
@@ -201,5 +241,15 @@
         #{categoryId}
         )
     </insert>
+
+    <select id="getJsonById" parameterType="string" resultMap="dataTableResult">
+        select * FROM datatable_json where id = #{value}
+    </select>
+    <select id="getJsonbById" parameterType="string" resultMap="dataTableResult">
+        select * FROM datatable_jsonb where id = #{value}
+    </select>
+    <select id="getMixById" parameterType="string" resultMap="dataTableResult">
+        select * FROM datatable_json_jsonb where id = #{value}
+    </select>
 
 </mapper>

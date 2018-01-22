@@ -82,7 +82,7 @@
         <dependency>
             <groupId>com.shujuguan</groupId>
             <artifactId>utils</artifactId>
-            <version>1.5-SNAPSHOT</version>
+            <version>1.8-SNAPSHOT</version>
         </dependency>
         <!-- Logging -->
         <dependency>

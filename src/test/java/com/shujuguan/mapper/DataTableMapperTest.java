@@ -31,4 +31,11 @@ public class DataTableMapperTest {
         Assert.assertTrue(dataTable.getDataConfig() instanceof ExcelDataConfig);
         dataTableMapper.insertJson(dataTable);
     }
+
+    @Test
+    public void getJsonById() {
+        DataTable dataTable = dataTableMapper.getJsonById("h0f9d33f4fe35478aa11f80c2106e11fd");
+        Assert.assertEquals(dataTable.getId(),"h0f9d33f4fe35478aa11f80c2106e11fd");
+        Assert.assertEquals(dataTable.getDbTableName(),"kfd2c79bdd8b44e24bc96c2dfe29d60eb");
+    }
 }

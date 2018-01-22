@@ -56,13 +56,13 @@ public class JsonTypeHandler<T extends Object> extends BaseTypeHandler<T> {
             throw new RuntimeException(e);
         }
     }
-
+    static ParserConfig jcParserConfig = new ParserConfig();
+    static {
+        jcParserConfig.putDeserializer(DataConfig.class, new DataConfigDeserializer());
+    }
     private T toObject(String content, Class<?> clazz) {
         if (StringUtils.isNotBlank(content)) {
             try {
-
-                ParserConfig jcParserConfig = new ParserConfig();
-                jcParserConfig.putDeserializer(DataConfig.class, new DataConfigDeserializer());
                 return JSON.parseObject(content, clazz, jcParserConfig, JSON.DEFAULT_PARSER_FEATURE);
             } catch (Exception e) {
                 throw new RuntimeException(e);

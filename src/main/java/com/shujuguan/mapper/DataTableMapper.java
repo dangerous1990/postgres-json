@@ -12,4 +12,11 @@ public interface DataTableMapper {
     int insertJsonb(DataTable dataTable);
 
     int insertJsonAndJsonb(DataTable dataTable);
+
+
+    DataTable getJsonById(String id);
+
+    DataTable getJsonbById(String id);
+
+    DataTable getMixById(String id);
 }

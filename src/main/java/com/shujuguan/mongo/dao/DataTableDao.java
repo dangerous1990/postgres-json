@@ -7,4 +7,6 @@ import com.shujuguan.entity.data.DataTable;
  */
 public interface DataTableDao {
     void insert(DataTable dataTable);
+
+    DataTable getByID(String id);
 }

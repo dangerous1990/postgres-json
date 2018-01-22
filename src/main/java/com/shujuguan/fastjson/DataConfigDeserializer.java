@@ -21,8 +21,8 @@ public class DataConfigDeserializer implements ObjectDeserializer {
     @Override
     public <T> T deserialze(DefaultJSONParser parser, Type type, Object fieldName) {
         //note json字符串 sourceType字段必须在dataConfig字段之前
-        String sourceType = ((DataTable) parser.getContext().getObject()).getSourceType();
-        return (T) parser.parseObject(map.get(sourceType));
+        //String sourceType = ((DataTable) parser.getContext().getObject()).getSourceType();
+        return (T) parser.parseObject(ExcelDataConfig.class);
     }
 
 
